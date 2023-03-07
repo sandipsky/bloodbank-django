@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- Website icon -->
+    <link rel="icon" href="images/icon.ico" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- fontawesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+</head>
+<body>
+    
+    <!-- header -->
+
+    <div class="header">
+        <div class="logo">
+            <img src="images/blood.png" alt="#">
+            <h1>Blood Bank Management System</h1>
+        </div>
+
+        
+        <ul class="links">
+            <li><a href="#"> <i class="fa fa-user"></i> Hello, Sandip(Admin) </a></li>
+            <li><a href=""><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a></li>
+        </ul>
+        
+    </div>
+
+
+    <!-- header end -->
+
+    <!-- maincontent -->
+    <div class="content">
+
+        <div class="content-left">
+            <ul><li><a href="index.html"><i class="fa fa-table-columns"></i> Dashboard</a></li></ul>
+            <ul><li><a href="donors.html"><i class="fa fa-users"></i> Donors</a></li></ul>
+            <ul><li><a href="patients.html"><i class="fa fa-user"></i> Patients</a></li></ul>
+            <ul><li><a href="stock.html"><i class="fa fa-user"></i> Blood Stock</a></li></ul>
+            <ul><li><a href="donations.html"><i class="fa fa-list-ul"></i></i> Donor Donations</a></li></ul>
+            <ul><li><a href="bloodrequest.html"><i class="fa fa-table-list"></i> Blood Requests</a></li></ul>
+        </div>
+
+        <div class="content-right">
+            <h1>Donations</h1>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>S.N</th>
+                        <th>Donor Name</th>
+                        <th>Donor Age</th>
+                        <th>Blood Group</th>
+                        <th>Units</th>
+                        <th>Disease</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Saku</td>
+                        <td>22</td>
+                        <td>A+</td>
+                        <td>5ml</td>
+                        <td>Corona</td>
+                        <td><a href="#">Approve</a> <a href="#">Reject</a>
+                        </td>
+                        
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+    <!-- maincontent end -->
+
+
+    <!-- Custom JS -->
+    <script src="js/script.js"></script>
+</body>
+</html>

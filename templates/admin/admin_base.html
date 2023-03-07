@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    {% load static %}
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- Website icon -->
+    <link rel="icon" href="images/icon.ico" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <!-- fontawesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+   
+
+</head>
+<body>
+    
+    <!-- header -->
+
+    <div class="header">
+        <div class="logo">
+            <img src="/static/images/blood.png" alt="#">
+            <h1>Blood Bank Management System</h1>
+        </div>
+
+        
+        <ul class="links">
+            <li><a href="#"> <i class="fa fa-user"></i> Hello, {{request.user}}(Admin) </a></li>
+            <li><a href=""><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a></li>
+        </ul>
+        
+    </div>
+
+
+    <!-- header end -->
+
+    <!-- maincontent -->
+    <div class="content">
+
+        <div class="content-left">
+            <ul><li><a href="index.html"><i class="fa fa-table-columns"></i> Dashboard</a></li></ul>
+            <ul><li><a href="donors.html"><i class="fa fa-users"></i> Donors</a></li></ul>
+            <ul><li><a href="{% url 'make-request' %}"><i class="fa fa-user"></i> Patients</a></li></ul>
+            <ul><li><a href="{% url 'blood-stock' %}"><i class="fa fa-user"></i> Blood Stock</a></li></ul>
+            <ul><li><a href="{% url 'nostock' %}"><i class="fa fa-list-ul"></i></i> Donor Donations</a></li></ul>
+            <ul><li><a href="{% url 'admin-request' %}"><i class="fa fa-table-list"></i> Blood Requests</a></li></ul>
+        </div>
+
+        <div class="content-right">
+
+
+               
+            {% block content %}
+
+            {% endblock content %}  
+        
+        </div>
+
+    </div>
+    <!-- maincontent end -->
+
+    
+
+    <!-- Custom JS -->
+    <script src="js/script.js"></script>
+</body>
+</html>

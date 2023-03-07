@@ -1,0 +1,17 @@
+{% extends 'admin_base.html' %}
+{% block content %}
+
+                <h1>Dashboard</h1>
+                <div class="summary">
+
+                    {% for blood in bloods %}
+                    <div class="card">
+                        <h1>{{blood.bloodgroup}}</h1>
+                        <h3>{{blood.unit}}ml</h3>
+                    </div>
+                    {% endfor %}
+                </div>
+        
+        
+
+                {% endblock content %}
