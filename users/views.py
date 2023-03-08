@@ -79,6 +79,7 @@ def afterlogin_view(request):
                 
     if is_hospital(request.user):
         return redirect('hospital-dashboard')
+    
     else:
         return redirect('admin-dashboard')
 

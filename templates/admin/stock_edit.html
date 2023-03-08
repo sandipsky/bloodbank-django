@@ -3,7 +3,7 @@
 {% block content %}
 <div class="auth-container">
     <h1>Edit Blood Group</h1>
-        <form action="" method="post">
+        <form action="{% url 'edit' blood.id %}" method="post">
             {% csrf_token %}
             <div class="input-group">
                 <label for="username">Blood Group Name</label>

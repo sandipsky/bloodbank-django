@@ -36,44 +36,40 @@ def admin_dashboard_view(request):
         # 'totaldonors':dmodels.Donor.objects.all().count(),
         'bloods': Stock.objects.all(), 
         'totalbloodunit':totalunit['unit__sum'],
-        #'totalrequest':models.BloodRequest.objects.all().count(),
+        #'totalrequest':BloodRequest.objects.all().count(),
         #'totalapprovedrequest':models.BloodRequest.objects.all().filter(status='Approved').count()
     }
-    return render(request,'admin_dashboard.html',context=dict)
+    return render(request,'admin/admin_dashboard.html',context=dict)
+
+        
 
 def blood_stock_view(request):
     dict={
         'bloods': Stock.objects.all(), 
     }
-    return render(request,'stock.html',context=dict)
+    return render(request,'admin/blood_stock.html',context=dict)
 
-def blood_stock_add_view(request):
-    form=BloodForm(request.POST)
+def blood_stock_add(request):
+    form=BloodForm()
     if request.method=='POST':
         form=BloodForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('/')  
-        else:
-            form = BloodForm()
-    context = {'form':form}
-    return render(request,'stock_add.html',context)
+            return redirect('blood-stock')
 
-def blood_stock_edit_view(request, pk):
+def blood_stock_edit(request, pk):
     item = Stock.objects.get(id=pk)
     form=BloodForm(instance=item)
     if request.method=='POST':
         form=BloodForm(request.POST,instance=item)
         if form.is_valid():
             form.save()
-            return redirect('/')  
-    context = {'form':form, 'item':item}
-    return render(request,'stock_edit.html',context)
+            return redirect('blood-stock') 
 
 def blood_stock_delete(request, pk):
     item = Stock.objects.get(id=pk)
     item.delete()
-    return redirect('/bloodstock')
+    return redirect('blood-stock')
 
 
 def make_request_view(request):
@@ -106,29 +102,6 @@ def admin_request_view(request):
 def request_view(request):
     requests=BloodRequest.objects.all().filter(in_stock=False)
     return render(request,'nostock.html',{'requests':requests})
-
-# @login_required(login_url='adminlogin')
-# def admin_blood_view(request):
-#     dict={
-#         'bloodForm':forms.BloodForm(),
-#         'A1':models.Stock.objects.get(bloodgroup="A+"),
-#         'A2':models.Stock.objects.get(bloodgroup="A-"),
-#         'B1':models.Stock.objects.get(bloodgroup="B+"),
-#         'B2':models.Stock.objects.get(bloodgroup="B-"),
-#         'AB1':models.Stock.objects.get(bloodgroup="AB+"),
-#         'AB2':models.Stock.objects.get(bloodgroup="AB-"),
-#         'O1':models.Stock.objects.get(bloodgroup="O+"),
-#         'O2':models.Stock.objects.get(bloodgroup="O-"),
-#     }
-#     if request.method=='POST':
-#         bloodForm=forms.BloodForm(request.POST)
-#         if bloodForm.is_valid() :        
-#             bloodgroup=bloodForm.cleaned_data['bloodgroup']
-#             stock=models.Stock.objects.get(bloodgroup=bloodgroup)
-#             stock.unit=bloodForm.cleaned_data['unit']
-#             stock.save()
-#         return HttpResponseRedirect('admin-blood')
-#     return render(request,'blood/admin_blood.html',context=dict)
 
 
 # @login_required(login_url='adminlogin')

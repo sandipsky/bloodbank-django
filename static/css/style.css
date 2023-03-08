@@ -16,7 +16,6 @@
 :root {
     --red: #D1270A;
     --dark: #1A2035;
-    --dark-alt: #2a3553;
   }
 
 /* Global Styling */
@@ -31,7 +30,7 @@
 
 body
 {
-  background-color: var(--dark);
+  background-color: #f5f5f5;
 }
 
 .btn 
@@ -49,7 +48,7 @@ a
 /* header section */
 .header
 {
-  background-color: var(--dark-alt);
+  background-color: var(--dark);
   display: flex;
   padding: 20px;
   align-items: center;
@@ -99,7 +98,6 @@ a
 
 .content
 {
-  background-color: var(--dark);
   height: 100vh;
   padding: 10px;
   display: flex;
@@ -109,7 +107,7 @@ a
 .content-left
 {
   height: 90vh;
-  background-color: var(--dark-alt);
+  background-color: var(--dark);
   flex: 2;
   /* border: 1px solid red; */
   border-radius: 5px;
@@ -174,9 +172,8 @@ a
 
 /* generic table */
 
-.content-right .table
+/* .content-right .table
 {
-  /* border: 1px solid white; */
   border-collapse: collapse;
   color: white;
   width: 95%;
@@ -185,16 +182,14 @@ a
 .content-right .table th
 {
   background-color: var(--red);
-  /* border: 1px solid white; */
   padding: 10px;
 }
 
 .content-right .table td
 {
   color: white;
-  /* border: 1px solid white; */
   padding: 10px;
-}
+} */
 
 /* tableend */
 
