@@ -83,11 +83,7 @@ def afterlogin_view(request):
     else:
         return redirect('admin-dashboard')
 
-def donor_dashboard_view(request):
-    return render(request, 'donor/donordashboard.html')
 
-def hospital_dashboard_view(request):
-    return render(request, 'hospital/hospitaldashboard.html')
 
 
 

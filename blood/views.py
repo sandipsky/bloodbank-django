@@ -1,61 +1,52 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import *
+from users.models import *
 from .forms import *
 from django.db.models import Sum,Q
 from django.http import HttpResponseRedirect
 from datetime import date
-from django.db.models.functions import ExtractDay
+
 
 # Create your views here.
 
 #Admin
 
-# def is_donor(user):
-#returns boolean value
-#     return user.groups.filter(name='DONOR').exists()
-
-# def is_patient(user):
-#     return user.groups.filter(name='PATIENT').exists()
-
-
-# def afterlogin_view(request):
-#     if is_donor(request.user):      
-#         return redirect('donor/donor-dashboard')
-                
-#     elif is_patient(request.user):
-#         return redirect('patient/patient-dashboard')
-#     else:
-#         return redirect('admin-dashboard')
-
 # @login_required(login_url='adminlogin')
 def admin_dashboard_view(request):
-    totalunit=Stock.objects.aggregate(Sum('unit'))
+    
     dict={
 
-        # 'totaldonors':dmodels.Donor.objects.all().count(),
-        'bloods': Stock.objects.all(), 
-        'totalbloodunit':totalunit['unit__sum'],
-        #'totalrequest':BloodRequest.objects.all().count(),
-        #'totalapprovedrequest':models.BloodRequest.objects.all().filter(status='Approved').count()
+        'Ap' : Stock.objects.filter(bloodgroup="A+").count,
+        'Am' : Stock.objects.filter(bloodgroup="A-").count,
+        'Bp' : Stock.objects.filter(bloodgroup="B+").count,
+        'Bm' : Stock.objects.filter(bloodgroup="B-").count,
+        'Op' : Stock.objects.filter(bloodgroup="O+").count,
+        'Om' : Stock.objects.filter(bloodgroup="O-").count,
+        'ABp' : Stock.objects.filter(bloodgroup="AB+").count,
+        'ABm' : Stock.objects.filter(bloodgroup="AB-").count,
+        
     }
     return render(request,'admin/admin_dashboard.html',context=dict)
 
         
 
 def blood_stock_view(request):
+    form=BloodForm()
     dict={
         'bloods': Stock.objects.all(), 
+        'form':form
+        
     }
     return render(request,'admin/blood_stock.html',context=dict)
 
 def blood_stock_add(request):
-    form=BloodForm()
     if request.method=='POST':
-        form=BloodForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('blood-stock')
+        bloodgroup = request.POST["bloodgroup"]
+        units = int(request.POST["units"])
+        for i in range(units):
+            Stock.objects.create(bloodgroup=bloodgroup)
+        return redirect('blood-stock')
 
 def blood_stock_edit(request, pk):
     item = Stock.objects.get(id=pk)
@@ -88,6 +79,9 @@ def make_request_view(request):
             return redirect('/bloodstock')  
     return render(request,'request.html',{'request_form':request_form})
 
+def donor_view(request):
+    donors = Donor.object.all()
+
 def admin_request_view(request):
     # requests=models.BloodRequest.objects.all().filter(status='Pending')
     requests=BloodRequest.objects.all()
@@ -103,6 +97,13 @@ def request_view(request):
     requests=BloodRequest.objects.all().filter(in_stock=False)
     return render(request,'nostock.html',{'requests':requests})
 
+
+
+def donor_dashboard_view(request):
+    return render(request, 'donor/donordashboard.html')
+
+def hospital_dashboard_view(request):
+    return render(request, 'hospital/hospitaldashboard.html')
 
 # @login_required(login_url='adminlogin')
 # def admin_donor_view(request):

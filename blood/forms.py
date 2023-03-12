@@ -5,7 +5,7 @@ from .models import *
 class BloodForm(forms.ModelForm):
     class Meta:
         model=Stock
-        fields=['bloodgroup','unit','status']
+        fields=['bloodgroup']
 
 class RequestForm(forms.ModelForm):
     class Meta:

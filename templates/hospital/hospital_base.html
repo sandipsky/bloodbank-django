@@ -36,7 +36,7 @@
 
         
         <ul class="links">
-            <li><a href="#"> <i class="fa fa-user"></i> Hello, {{request.user}}(Admin) </a></li>
+            <li><a href="#"> <i class="fa fa-user"></i> Hello, {{request.user}}(Hospital) </a></li>
             <li><a href="{% url 'logout' %}"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a></li>
         </ul>
         
@@ -49,12 +49,10 @@
     <div class="content">
 
         <div class="content-left">
-            <ul><li><a href="{% url 'admin-dashboard' %}"><i class="fa fa-table-columns"></i> Dashboard</a></li></ul>
-            <ul><li><a href="{% url 'blood-stock' %}"><i class="fa fa-user"></i> Blood Stock</a></li></ul>
-            <ul><li><a href="#"><i class="fa fa-users"></i> Donors</a></li></ul>
-            <ul><li><a href="#"><i class="fa fa-user"></i> Hospitals</a></li></ul>
-            <ul><li><a href="#"><i class="fa fa-list-ul"></i></i> Donations</a></li></ul>
-            <ul><li><a href="#"><i class="fa fa-table-list"></i> Blood Requests</a></li></ul>
+            <ul><li><a href="index.html"><i class="fa fa-table-columns"></i> Dashboard</a></li></ul>
+            <ul><li><a href="#"><i class="fa fa-users"></i>Search Donors</a></li></ul>
+            <ul><li><a href="#"><i class="fa fa-user"></i> Request for Blood</a></li></ul>
+            <ul><li><a href="#"><i class="fa fa-list-ul"></i></i> Request History</a></li></ul>
         </div>
 
         <div class="content-right">

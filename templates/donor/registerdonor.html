@@ -1,27 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-
-    <!-- Website icon -->
-    <link rel="icon" href="images/icon.ico" />
-
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/style.css">
-
-    <!-- fontawesome icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    
-   
-
-</head>
-<body>
+{% extends 'base.html' %}
+{% block maincontent %}
     
     <div class="auth-container">
-        <h1>Donor Registration</h1>
+        <h3>Donor Registration</h3>
 
         <form action="" method="post">
             {% csrf_token %}
@@ -89,16 +70,11 @@
                 <input type="password" name="password2">
                 </div>
 
-        
-            <button class="btn" type="submit"><b>Register</b> </button>
+                <br>
+            <button class="btn btn-success" type="submit"><b>Register</b> </button>
         </form>
 
-        <h3>Already Registered? <a href="login.html">Login</a></h3> 
+        <p>Already Registered? <a href="{% url 'login' %}">Login</a></p> 
     </div>
 
-    
-
-    <!-- Custom JS -->
-    <script src="js/script.js"></script>
-</body>
-</html>
+{% endblock %}

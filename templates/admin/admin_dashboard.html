@@ -4,14 +4,49 @@
                 <h1>Dashboard</h1>
                 <div class="summary">
 
-                    {% for blood in bloods %}
+               
                     <div class="card">
-                        <h1>{{blood.bloodgroup}}</h1>
-                        <h3>{{blood.unit}}ml</h3>
+                        <h1>A+</h1>
+                        <h5>{{Ap}} Units</h5>
                     </div>
-                    {% endfor %}
+
+                    <div class="card">
+                        <h1>A-</h1>
+                        <h5>{{Am}} Units</h5>
+                    </div>
+
+                    <div class="card">
+                        <h1>B+</h1>
+                        <h5>{{Bp}} Units</h5>
+                    </div>
+
+                    <div class="card">
+                        <h1>B-</h1>
+                        <h5>{{Bm}} Units</h5>
+                    </div>
+
+                    <div class="card">
+                        <h1>O+</h1>
+                        <h5>{{Op}} Units</h5>
+                    </div>
+
+                    <div class="card">
+                        <h1>O-</h1>
+                        <h5>{{Om}} Units</h5>
+                    </div>
+
+                    <div class="card">
+                        <h1>AB+</h1>
+                        <h5>{{ABp}} Units</h5>
+                    </div>
+
+                    <div class="card">
+                        <h1>AB-</h1>
+                        <h5>{{ABm}} Units</h5>
+                    </div>
+                  
                 </div>
         
         
 
-                {% endblock content %}
+{% endblock content %}
