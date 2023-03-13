@@ -3,16 +3,16 @@ from django.contrib.auth.decorators import login_required
 from .models import *
 from users.models import *
 from .forms import *
+from users.forms import *
 from django.db.models import Sum,Q
 from django.http import HttpResponseRedirect
 from datetime import date
+from django.contrib.auth.models import Group
 
-
-# Create your views here.
 
 #Admin
 
-# @login_required(login_url='adminlogin')
+# @login_required(login_url='alogin')
 def admin_dashboard_view(request):
     
     dict={
@@ -25,7 +25,6 @@ def admin_dashboard_view(request):
         'Om' : Stock.objects.filter(bloodgroup="O-").count,
         'ABp' : Stock.objects.filter(bloodgroup="AB+").count,
         'ABm' : Stock.objects.filter(bloodgroup="AB-").count,
-        
     }
     return render(request,'admin/admin_dashboard.html',context=dict)
 
@@ -62,6 +61,41 @@ def blood_stock_delete(request, pk):
     item.delete()
     return redirect('blood-stock')
 
+def donor_view(request):
+    donors = Donor.objects.all()
+    context = { 'donors': donors}
+    return render(request, 'admin/donor.html', context)
+
+def donor_add(request):
+    if request.method=='POST':
+        userForm=UserForm(request.POST)
+        donorForm=DonorForm(request.POST)
+        if userForm.is_valid() and donorForm.is_valid():
+            user=userForm.save()
+            user.save()
+            donor=donorForm.save(commit=False)
+            donor.user=user
+            donor.bloodgroup=donorForm.cleaned_data['bloodgroup']
+            donor.save()
+            donor_group = Group.objects.get_or_create(name='DONOR')
+            donor_group[0].user_set.add(user)
+            return redirect('donors')
+
+def donor_edit(request, pk):
+    item = Donor.objects.get(id=pk)
+    form=DonorForm(instance=item)
+    if request.method=='POST':
+        form=DonorForm(request.POST,instance=item)
+        if form.is_valid():
+            form.save()
+            return redirect('donors')
+        
+def donor_delete(request, pk):
+    item = Donor.objects.get(id=pk)
+    user = User.objects.get(id=item.user.id)
+    user.delete()
+    return redirect('donors')
+
 
 def make_request_view(request):
     request_form=RequestForm()
@@ -79,8 +113,7 @@ def make_request_view(request):
             return redirect('/bloodstock')  
     return render(request,'request.html',{'request_form':request_form})
 
-def donor_view(request):
-    donors = Donor.object.all()
+
 
 def admin_request_view(request):
     # requests=models.BloodRequest.objects.all().filter(status='Pending')
